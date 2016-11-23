@@ -1,0 +1,117 @@
+<html>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="./dots.js"></script>
+    <style>
+        .container {
+            width: 600px;
+            margin: auto;
+        }
+        .compass {
+            position: absolute;
+            height: 600px;
+            width: 600px;
+        }
+        .authritarian-left, .authritarian-right, .libertarian-left, .libertarian-right{
+            position: absolute;
+            height: 300px;
+            width: 300px;
+        }
+        .authritarian-left {
+            background-color: rgba(0,0,255,0.3);
+        }
+        .authritarian-right {
+            background-color: rgba(100,100,100,0.5);
+            left: 300px;
+        }
+        .libertarian-right {
+            background-color: rgba(255,255,0,0.5);
+            left: 300px;
+            top: 300px;
+        }
+        .libertarian-left {
+            background-color: rgba(255,0,0,0.5);
+            top: 300px;
+        }
+        .cont {
+            height: 600px;
+            width: 600px;
+        }
+        .authritarian-desc, .libertarian-desc {
+            width: 600px;
+            text-align: center;
+        }
+        .left-desc {
+            position: absolute;
+            top: 290px;
+            left:-200px;
+        }
+        .right-desc {
+            position: absolute;
+            top: 290px;
+            right: -200px;
+        }
+        .dot {
+            position: absolute;
+            background-color: red;
+            z-index: 999;
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+        }
+
+        .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+        }
+
+    .dot:hover .tooltiptext {
+        visibility: visible;
+    }
+    </style>
+</head>
+    <body>
+        <div class="container">
+            <div class="authritarian-desc">Authoritarian (Facism)</div>
+            <div class="cont">
+                <div class="compass">
+                    <div class="left-desc">Left (Communism)</div>
+                    <div class="right-desc">Right (Neoliberasim)</div>
+                    <div class="authritarian-left"></div>
+                    <div class="authritarian-right"></div>
+                    <div class="libertarian-left"></div>
+                    <div class="libertarian-right"></div>
+                </div>
+            </div>
+        <div class="libertarian-desc">Libertarian (Anarchism)</div>
+    </div>
+    <br>
+    <div class="sources">
+        <ul>
+            <li>http://ef-magazin.de/2016/08/02/1761-uebersicht-politisch-meinungsbildende-zeitungen-und-zeitschriften-in-deutscher-sprache</li>
+        </ul>
+    </div>
+    <script>
+    function addDot(x, y, desc) {
+        $(".compass").append('<div class="dot" alt="'+ desc + '" style="top:'+y+';left:'+x+';"><span class="tooltiptext">'+desc+'</span></div>');
+    }
+    $(document).ready( function() {
+        for (var key in dots) {
+            if (dots.hasOwnProperty(key)) {
+                addDot(dots[key].x, dots[key].y, key);
+            }
+        }
+    });
+    </script>
+    </body>
+</hmtl>
