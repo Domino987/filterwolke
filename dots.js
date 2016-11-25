@@ -14,7 +14,7 @@ var dots = {
         y : 150
     },
     Handelsblatt: {
-        x: 350,
+        x: 450,
         y: 350
     },
     "Junge Welt": {

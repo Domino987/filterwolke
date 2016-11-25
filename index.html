@@ -1,5 +1,7 @@
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:svg="http://www.w3.org/2000/svg">
 <head>
+    <meta charset="UTF-8">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
     <script src="./dots.js"></script>
@@ -60,7 +62,6 @@
             width: 8px;
             border-radius: 50%;
         }
-
         .tooltiptext {
             visibility: hidden;
             width: 120px;
@@ -69,21 +70,30 @@
             text-align: center;
             border-radius: 6px;
             padding: 5px 0;
-
-            /* Position the tooltip */
             position: absolute;
             z-index: 1;
         }
-
-    .dot:hover .tooltiptext {
-        visibility: visible;
-    }
+        .dot:hover .tooltiptext, .dot:focus .tooltiptext {
+            visibility: visible;
+        }
+        #svg {
+            position: absolute;
+            z-index: 9;
+        }
     </style>
 </head>
     <body>
+        <h1>Filter Wolke</h1>
         <div class="container">
+
+            <div class="optionContainer">
+
+            </div>
             <div class="authritarian-desc">Authoritarian (Facism)</div>
             <div class="cont">
+                <svg xmlns:xlink="http://www.w3.org/1999/xlink" id="svg" height="600" width="600">
+
+ </svg>
                 <div class="compass">
                     <div class="left-desc">Left (Communism)</div>
                     <div class="right-desc">Right (Neoliberasim)</div>
@@ -98,19 +108,85 @@
     <br>
     <div class="sources">
         <ul>
-            <li>http://ef-magazin.de/2016/08/02/1761-uebersicht-politisch-meinungsbildende-zeitungen-und-zeitschriften-in-deutscher-sprache</li>
+            <li>
+                <a href ="http://ef-magazin.de/2016/08/02/1761-uebersicht-politisch-meinungsbildende-zeitungen-und-zeitschriften-in-deutscher-sprache">
+                http://ef-magazin.de/2016/08/02/1761-uebersicht-politisch-meinungsbildende-zeitungen-und-zeitschriften-in-deutscher-sprache</a>
+            </li>
         </ul>
     </div>
     <script>
-    function addDot(x, y, desc) {
-        $(".compass").append('<div class="dot" alt="'+ desc + '" style="top:'+y+';left:'+x+';"><span class="tooltiptext">'+desc+'</span></div>');
+    function addDot(x, y, desc, id) {
+        $(".compass").append('<div id="dot_'+ id +'" class="dot" alt="'+ desc + '" style="top:'+y+';left:'+x+';"><span class="tooltiptext">'+desc+'</span></div>');
     }
+    function createOptions(id, desc) {
+        $(".optionContainer").append('<div id="'+id+'" class="checkbox"><label><input type="checkbox"> '+ desc +'</label></div>');
+    }
+    function getActiveDots() {
+        var arr = [];
+        for (var key in dots) {
+            if (dots.hasOwnProperty(key)) {
+                if(dots[key].active) {
+                    arr.push(key);
+                }
+            }
+        }
+        return arr;
+    }
+    function makeSVG(tag, attrs) {
+    var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (var k in attrs)
+        el.setAttribute(k, attrs[k]);
+    return el;
+    }
+    function drawLines(arr) {
+        if(arr.length > 0) {
+            var pivot = arr.pop();
+            var x1 = dots[pivot].x;
+            var y1 = dots[pivot].y;
+            var x2 = 0;
+            var y2 = 0;
+            var len = arr.length;
+            for(var i = 0; i < len; i++) {
+                x2 = dots[arr[i]].x;
+                y2 = dots[arr[i]].y;
+
+                var svg = makeSVG('line',{'x1':x1,'y1':y1,'x2':x2,'y2':y2, stroke: 'black', 'stroke-width': 2})
+                document.getElementById('svg').appendChild(svg);
+            }
+            drawLines(arr);
+        }
+    }
+
+    jQuery.fn.redraw = function() {
+    return this.hide(0, function() {
+        $(this).show();
+    });
+};
     $(document).ready( function() {
         for (var key in dots) {
             if (dots.hasOwnProperty(key)) {
-                addDot(dots[key].x, dots[key].y, key);
+                createOptions(key, key);
+                addDot(dots[key].x, dots[key].y, key, key);
             }
         }
+        $(".checkbox").on("change", function(e){
+            console.log(e.target.checked);
+            var id = e.currentTarget.id;
+            var checked = e.target.checked;
+            if(checked) {
+                $("#dot_"+id).css('background-color', "green");
+                dots[id]['active'] =  true;
+                var arr = getActiveDots();
+                if(arr.length >= 2) {
+                    drawLines(arr);
+                }
+            }
+            else {
+                $("#dot_"+id).css('background-color', "red");
+                dots[id]['active']  = false;
+            }
+            console.log(dots);
+        });
     });
     </script>
     </body>
