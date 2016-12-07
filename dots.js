@@ -4,65 +4,79 @@ var dots = {
         y : 450,
         title: "TAZ"
     },
-    "Die Welt": {
+    die_welt: {
         x : 450,
         y : 100,
         title: "Die Welt"
     },
-    FAZ : {
+    faz : {
         x: 400,
-        y : 150
+        y : 150,
+        title: "Frankfurter Allgemeine"
     },
-    Handelsblatt: {
+    handelsblatt: {
         x: 450,
-        y: 350
+        y: 350,
+        title: "Handelsblatt"
     },
-    "Junge Welt": {
+    junge_welt: {
         x: 50,
-        y: 310
+        y: 310,
+        title: "Junge Welt"
     },
-    "Neues Deutschland": {
+    neues_deutschland : {
         x: 100,
-        y: 200
+        y: 200,
+        title: "Neues Deutschland"
     },
-    "Süddeutsche Zeitung": {
+    sueddeutsche_zeitung: {
         x: 100,
-        y: 500
+        y: 500,
+        title: "Süddeutsche Zeitung"
     },
-    "Junge Freiheit": {
+    junge_freiheit: {
         x: 450,
-        y: 70
+        y: 70,
+        title: "Junge Freiheit"
     },
-    "Jungle World": {
+    jungel_world: {
         x: 50,
-        y: 500
+        y: 500,
+        title: "Jungle World"
     },
-    "National-Zeitung" : {
+     national_zeitung: {
         x:445,
-        y: 50
+        y: 50,
+        title: "National-Zeitung"
     },
-    "Preußische Allgemeine Zeitung" : {
+     preussische_allgemeine_zeitung: {
         x:330,
-        y:150
+        y:150,
+        title: "Preußische Allgemeine Zeitung"
     },
-    "Der Spiegel": {
+    der_spiegel : {
         x: 150,
-        y: 470
+        y: 470,
+        title: "Der Spiegel"
     },
-    "Focus": {
+    focus: {
             x: 330,
-            y: 280
+            y: 280,
+            title: "Focus"
     },
-    "Stern": {
+    stern: {
         x: 290,
-        y: 320
+        y: 320,
+        title: "Stern"
     },
-    "Deutsche Stimme": {
+    deutsche_stimme: {
         x: 295,
-        y: 10
+        y: 10,
+        title: "Deutsche Stimme"
     },
     graswurzelrevolution: {
         x: 295,
-        y: 590
+        y: 590,
+        title: "Graswurzelrevolution"
     }
 };
