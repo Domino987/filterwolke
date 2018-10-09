@@ -1,302 +1,50 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:svg="http://www.w3.org/2000/svg">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg">
+
 <head>
     <meta charset="UTF-8">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
     <script src="./dots.js"></script>
-    <style>
-        .container {
-            width: 600px;
-            margin: auto;
-        }
-        .compass {
-            position: absolute;
-            height: 600px;
-            width: 600px;
-        }
-        .authritarian-left, .authritarian-right, .libertarian-left, .libertarian-right{
-            position: absolute;
-            height: 300px;
-            width: 300px;
-        }
-        .authritarian-left {
-            background-color: rgba(0,0,255,0.3);
-        }
-        .authritarian-right {
-            background-color: rgba(100,100,100,0.5);
-            left: 300px;
-        }
-        .libertarian-right {
-            background-color: rgba(255,255,0,0.5);
-            left: 300px;
-            top: 300px;
-        }
-        .libertarian-left {
-            background-color: rgba(255,0,0,0.5);
-            top: 300px;
-        }
-        .cont {
-            height: 600px;
-            width: 600px;
-        }
-        .authritarian-desc, .libertarian-desc {
-            width: 600px;
-            text-align: center;
-        }
-        .left-desc {
-            position: absolute;
-            top: 290px;
-            left:-200px;
-        }
-        .right-desc {
-            position: absolute;
-            top: 290px;
-            right: -200px;
-        }
-        .dot {
-            position: absolute;
-            background-color: red;
-            z-index: 999;
-            height: 8px;
-            width: 8px;
-            border-radius: 50%;
-        }
-        .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: black;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 1;
-        }
-        .dot:hover .tooltiptext, .dot:focus .tooltiptext {
-            visibility: visible;
-        }
-        #svg {
-            position: absolute;
-            z-index: 9;
-        }
-        path {
-            fill: rgba(255,255,255,0.5);;
-            stroke: black;
-            stroke-width: 2;
-            stroke-linejoin: round;
-        }
-        path:hover {
-            fill: aliceblue;
-            stroke: lightskyblue;
-        }
-    </style>
+    <script src="./utils.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
-    <body>
-        <h1>Filter Wolke</h1>
-        <div class="container">
+<body>
+    <h1>Filter Wolke</h1>
+    <div class="container">
 
-            <div class="optionContainer">
+        <div class="optionContainer">
 
+        </div>
+        <div class="authritarian-desc">Authoritarian (Facism)</div>
+        <div class="cont">
+            <svg xmlns:xlink="http://www.w3.org/1999/xlink" id="svg" height="600" width="600">
+
+            </svg>
+            <div class="compass">
+                <div class="left-desc">Left (Communism)</div>
+                <div class="right-desc">Right (Neoliberasim)</div>
+                <div class="authritarian-left"></div>
+                <div class="authritarian-right"></div>
+                <div class="libertarian-left"></div>
+                <div class="libertarian-right"></div>
             </div>
-            <div class="authritarian-desc">Authoritarian (Facism)</div>
-            <div class="cont">
-                <svg xmlns:xlink="http://www.w3.org/1999/xlink" id="svg" height="600" width="600">
-
- </svg>
-                <div class="compass">
-                    <div class="left-desc">Left (Communism)</div>
-                    <div class="right-desc">Right (Neoliberasim)</div>
-                    <div class="authritarian-left"></div>
-                    <div class="authritarian-right"></div>
-                    <div class="libertarian-left"></div>
-                    <div class="libertarian-right"></div>
-                </div>
-            </div>
+        </div>
         <div class="libertarian-desc">Libertarian (Anarchism)</div>
     </div>
     <br>
     <div class="sources">
         <ul>
             <li>
-                <a href ="http://ef-magazin.de/2016/08/02/1761-uebersicht-politisch-meinungsbildende-zeitungen-und-zeitschriften-in-deutscher-sprache">
-                http://ef-magazin.de/2016/08/02/1761-uebersicht-politisch-meinungsbildende-zeitungen-und-zeitschriften-in-deutscher-sprache</a>
+                <a href="http://ef-magazin.de/2016/08/02/1761-uebersicht-politisch-meinungsbildende-zeitungen-und-zeitschriften-in-deutscher-sprache">
+                    http://ef-magazin.de/2016/08/02/1761-uebersicht-politisch-meinungsbildende-zeitungen-und-zeitschriften-in-deutscher-sprache</a>
             </li>
         </ul>
     </div>
-    <script>
-    function addDot(x, y, desc, id) {
-        $(".compass").append('<div id="dot_'+ id +'" class="dot" alt="'+ desc + '" style="top:'+y+';left:'+x+';"><span class="tooltiptext">'+desc+'</span></div>');
-    }
-    function createOptions(id, desc) {
-        $(".optionContainer").append('<div id="'+id+'" class="checkbox"><label><input type="checkbox"> '+ desc +'</label></div>');
-    }
-    function getActiveDots() {
-        var arr = [];
-        for (var key in dots) {
-            if (dots.hasOwnProperty(key)) {
-                if(dots[key].active) {
-                    arr.push(key);
-                }
-            }
-        }
-        return arr;
-    }
-    function removeChildrenbyId(id) {
-        var ele = document.getElementById(id);
-        while (ele.lastChild) {
-            ele.removeChild(ele.lastChild);
-        }
-    }
-    function makeSVG(tag, attrs) {
-        var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
-        for (var k in attrs)
-            el.setAttribute(k, attrs[k]);
-        return el;
-    }
-    function drawLines(arr) {
-        if(arr.length > 0) {
-            var pivot = arr.pop();
-            var x1 = dots[pivot].x + 4;
-            var y1 = dots[pivot].y + 4;
-            var x2 = 0;
-            var y2 = 0;
-            var len = arr.length;
-            for(var i = 0; i < len; i++) {
-                x2 = dots[arr[i]].x + 4;
-                y2 = dots[arr[i]].y + 4 ;
-
-                var svg = makeSVG('line',{'x1':x1,'y1':y1,'x2':x2,'y2':y2, stroke: 'black', 'stroke-width': 2});
-                document.getElementById('svg').appendChild(svg);
-            }
-            drawLines(arr);
-        }
-    }
-    function drawArc(first, second, third, fourth) {
-        var y1 = dots[first].y;
-        var x1 = dots[first].x;
-        var y2 = dots[second].y;
-        var x2 = dots[second].x;
-        var y3 = dots[third].y;
-        var x3 = dots[third].x;
-        var y4 = dots[fourth].y;
-        var x4 = dots[fourth].x;
-
-        var x12_distance = x2 - x1;
-        var y12_distance = y2 - y1;
-        var x23_distance = x3 - x2;
-        var y23_distance = y3 - y2;
-        var x34_distance = x4 - x3;
-        var y34_distance = y4 - y3;
-        var x41_distance = x1 - x4;
-        var y41_distance = y1 - y4;
-
-        var arc1 = 'M '+ x1+ ','+y1+' a .5,.6 0 0,1 ' + x12_distance + ',' + y12_distance + ' ';
-        var arc2 = ' a .5,.6 0 0,1 ' + x23_distance + ',' + y23_distance + ' ';
-        var arc3 = ' a .6,.5 0 0,1 ' + x34_distance + ',' + y34_distance + ' ';
-        var arc4 = ' a .5,.6 0 0,1 ' + x41_distance + ',' + y41_distance + ' z';
-
-
-        var svg = makeSVG('path',{'d':arc1+arc2+arc3+arc4, stroke: 'black', 'stroke-width': 2, 'stroke-linejoin': 'round'});
-
-        document.getElementById('svg').appendChild(svg);
-    }
-    function findLowest (arr) {
-        var oarr = [];
-        oarr= arr.slice();
-        var pivot = oarr.pop();
-        var py = dots[pivot].y;
-        var px = dots[pivot].x;
-        var largestX = pivot;
-        var largestY = pivot;
-        for (var key in dots) {
-            if (dots.hasOwnProperty(key)) {
-                if(dots[key].active) {
-                    if(py < dots[key].y) {
-                        py = dots[key].y
-                        largestY = key;
-                    }
-                    if(px < dots[key].x) {
-                        px = dots[key].x
-                        largestX = key;
-                }
-            }
-        }
-    }
-    var narr = [];
-    narr.push(largestX);
-    narr.push(largestY);
-    return narr;
-
-    }
-    function findLargest(arr) {
-        var oarr = [];
-        oarr= arr.slice();
-        var pivot = oarr.pop();
-        var py = dots[pivot].y;
-        var px = dots[pivot].x;
-        var largestX = pivot;
-        var largestY = pivot;
-        for (var key in dots) {
-            if (dots.hasOwnProperty(key)) {
-                if(dots[key].active) {
-                    if(py > dots[key].y) {
-                        py = dots[key].y
-                        largestY = key;
-                    }
-                    if(px > dots[key].x) {
-                        px = dots[key].x
-                        largestX = key;
-                }
-            }
-        }
-    }
-    var narr = [];
-    narr.push(largestX);
-    narr.push(largestY);
-    return narr;
-}
-    function findExtremes (arr) {
-        var large = findLargest(arr);
-        var small = findLowest(arr);
-        console.log("Large X,Y: " + large);
-        console.log("Small X,Y: " + small);
-        var farr = large.concat(small);
-        drawArc(large[0], large[1], small[0], small[1]);
-
-        return large.concat(small);
-    }
-    $(document).ready( function() {
-        for (var key in dots) {
-            if (dots.hasOwnProperty(key)) {
-                createOptions(key, dots[key].title);
-                addDot(dots[key].x, dots[key].y, dots[key].title, key);
-            }
-        }
-        $(".checkbox").on("change", function(e){
-            removeChildrenbyId('svg');
-            var id = e.currentTarget.id;
-            var checked = e.target.checked;
-            if(checked) {
-                $("#dot_"+id).css('background-color', "green");
-                dots[id]['active'] =  true;
-            }
-            else {
-                $("#dot_"+id).css('background-color', "red");
-                dots[id]['active']  = false;
-            }
-            var arr = getActiveDots();
-            if(arr.length >= 2) {
-                if(arr.length <= 3) {
-                    drawLines(arr);
-                }
-                else {
-                    findExtremes(arr);
-                }
-            }
-            console.log(dots);
-        });
-    });
+    <script>    
+        $(document).ready(function(e){
+            renderBox()
+        })
     </script>
-    </body>
+</body>
 </hmtl>

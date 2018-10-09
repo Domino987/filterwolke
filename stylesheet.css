@@ -1,0 +1,106 @@
+.container {
+    width: 600px;
+    margin: auto;
+}
+
+.compass {
+    position: absolute;
+    height: 600px;
+    width: 600px;
+}
+
+.authritarian-left,
+.authritarian-right,
+.libertarian-left,
+.libertarian-right {
+    position: absolute;
+    height: 300px;
+    width: 300px;
+}
+
+.authritarian-left {
+    background-color: rgba(0, 0, 255, 0.3);
+}
+
+.authritarian-right {
+    background-color: rgba(100, 100, 100, 0.5);
+    left: 300px;
+}
+
+.libertarian-right {
+    background-color: rgba(255, 255, 0, 0.5);
+    left: 300px;
+    top: 300px;
+}
+
+.libertarian-left {
+    background-color: rgba(255, 0, 0, 0.5);
+    top: 300px;
+}
+
+.cont {
+    height: 600px;
+    width: 600px;
+}
+
+.authritarian-desc,
+.libertarian-desc {
+    width: 600px;
+    text-align: center;
+}
+
+.left-desc {
+    position: absolute;
+    top: 290px;
+    left: -200px;
+}
+
+.right-desc {
+    position: absolute;
+    top: 290px;
+    right: -200px;
+}
+
+.dot {
+    position: absolute;
+    background-color: red;
+    z-index: 999;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.dot:hover .tooltiptext,
+.dot:focus .tooltiptext {
+    visibility: visible;
+}
+
+#svg {
+    position: absolute;
+    z-index: 9;
+}
+
+path {
+    fill: rgba(255, 255, 255, 0.5);
+    ;
+    stroke: black;
+    stroke-width: 2;
+    stroke-linejoin: round;
+}
+
+path:hover {
+    fill: aliceblue;
+    stroke: lightskyblue;
+}

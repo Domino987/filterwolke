@@ -1,5 +1,5 @@
 var dots = {
-    taz : {
+    taz: {
         x : 50,
         y : 450,
         title: "TAZ"
